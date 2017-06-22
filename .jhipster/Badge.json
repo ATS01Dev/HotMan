@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "codes",
+            "otherEntityName": "codebadge",
+            "otherEntityRelationshipName": "badges"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "rooms",
+            "otherEntityName": "rooms",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "badge"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numberbadge",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "matricule",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170622204410",
+    "entityTableName": "badge",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl"
+}
