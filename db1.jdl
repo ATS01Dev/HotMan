@@ -6,13 +6,13 @@ entity Client {
     email String required,
     datecome ZonedDateTime required,
     datego ZonedDateTime,
-    duration Double required,
+    duration Long,
    	reservation Boolean
 
 }
 entity Codebadge{
 	description String,
-	code String 
+	code String
 }
 
   enum Etatromms{

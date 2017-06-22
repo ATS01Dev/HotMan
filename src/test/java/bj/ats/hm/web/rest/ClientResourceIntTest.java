@@ -65,8 +65,8 @@ public class ClientResourceIntTest {
     private static final ZonedDateTime DEFAULT_DATEGO = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_DATEGO = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
-    private static final Double DEFAULT_DURATION = 1D;
-    private static final Double UPDATED_DURATION = 2D;
+    private static final Long DEFAULT_DURATION = 1L;
+    private static final Long UPDATED_DURATION = 2L;
 
     private static final Boolean DEFAULT_RESERVATION = false;
     private static final Boolean UPDATED_RESERVATION = true;
@@ -255,24 +255,6 @@ public class ClientResourceIntTest {
 
     @Test
     @Transactional
-    public void checkDurationIsRequired() throws Exception {
-        int databaseSizeBeforeTest = clientRepository.findAll().size();
-        // set the field null
-        client.setDuration(null);
-
-        // Create the Client, which fails.
-
-        restClientMockMvc.perform(post("/api/clients")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(client)))
-            .andExpect(status().isBadRequest());
-
-        List<Client> clientList = clientRepository.findAll();
-        assertThat(clientList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllClients() throws Exception {
         // Initialize the database
         clientRepository.saveAndFlush(client);
@@ -289,7 +271,7 @@ public class ClientResourceIntTest {
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].datecome").value(hasItem(sameInstant(DEFAULT_DATECOME))))
             .andExpect(jsonPath("$.[*].datego").value(hasItem(sameInstant(DEFAULT_DATEGO))))
-            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.doubleValue())))
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.intValue())))
             .andExpect(jsonPath("$.[*].reservation").value(hasItem(DEFAULT_RESERVATION.booleanValue())));
     }
 
@@ -311,7 +293,7 @@ public class ClientResourceIntTest {
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
             .andExpect(jsonPath("$.datecome").value(sameInstant(DEFAULT_DATECOME)))
             .andExpect(jsonPath("$.datego").value(sameInstant(DEFAULT_DATEGO)))
-            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION.doubleValue()))
+            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION.intValue()))
             .andExpect(jsonPath("$.reservation").value(DEFAULT_RESERVATION.booleanValue()));
     }
 
@@ -426,7 +408,7 @@ public class ClientResourceIntTest {
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
             .andExpect(jsonPath("$.[*].datecome").value(hasItem(sameInstant(DEFAULT_DATECOME))))
             .andExpect(jsonPath("$.[*].datego").value(hasItem(sameInstant(DEFAULT_DATEGO))))
-            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.doubleValue())))
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.intValue())))
             .andExpect(jsonPath("$.[*].reservation").value(hasItem(DEFAULT_RESERVATION.booleanValue())));
     }
 

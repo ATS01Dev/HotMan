@@ -50,8 +50,8 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="duration" type="double">
-                <constraints nullable="false" />
+            <column name="duration" type="bigint">
+                <constraints nullable="true" />
             </column>
 
             <column name="reservation" type="bit">

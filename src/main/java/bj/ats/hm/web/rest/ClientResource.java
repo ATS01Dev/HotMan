@@ -21,7 +21,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.time.Duration;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -59,11 +58,9 @@ public class ClientResource {
         if (client.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new client cannot already have an ID")).body(null);
         }
-//        Date depart = (Date) client.getDatecome();
-//        Date retour= (Date) date_ret.getDate();
-//        long dureest= (depart.getTime()- retour.getTime())/86400000 ;
         Duration d = Duration.between( client.getDatecome() , client.getDatego() );
-        Client result = clientService.save(client.duration((double) d.toDays()));
+        Client result = clientService.save(client.duration(d.toDays()));
+//        Client result = clientService.save(client);
         return ResponseEntity.created(new URI("/api/clients/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);

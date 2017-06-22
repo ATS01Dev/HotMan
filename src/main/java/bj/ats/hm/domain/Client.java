@@ -50,9 +50,8 @@ public class Client implements Serializable {
     @Column(name = "datego")
     private ZonedDateTime datego;
 
-    @NotNull
-    @Column(name = "duration", nullable = false)
-    private Double duration;
+    @Column(name = "duration")
+    private Long duration;
 
     @Column(name = "reservation")
     private Boolean reservation;
@@ -163,16 +162,16 @@ public class Client implements Serializable {
         this.datego = datego;
     }
 
-    public Double getDuration() {
+    public Long getDuration() {
         return duration;
     }
 
-    public Client duration(Double duration) {
+    public Client duration(Long duration) {
         this.duration = duration;
         return this;
     }
 
-    public void setDuration(Double duration) {
+    public void setDuration(Long duration) {
         this.duration = duration;
     }
 

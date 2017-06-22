@@ -59,10 +59,7 @@
         },
         {
             "fieldName": "duration",
-            "fieldType": "Double",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldType": "Long"
         },
         {
             "fieldName": "reservation",
