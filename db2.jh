@@ -1,0 +1,55 @@
+entity Personel {
+	fistname String required,
+   	lastname String required,
+    sexe Sexe
+    }
+enum Sexe {
+HOMME, FEMME
+}
+
+entity Fonction{
+ poste String required,
+ stardate LocalDate required,
+ typecontrat String,
+ durrecontrat String,
+ datenaissane LocalDate,
+ phonenumber String,
+ email String
+ salary Long
+
+}
+entity Department{
+namedepartement String,
+description String
+}
+entity Horraires{
+startDate ZonedDateTime,
+endDate ZonedDateTime,
+description String
+
+}
+relationship OneToOne {
+	Personel{fonction(poste)} to Fonction{personels}
+}
+
+
+
+relationship OneToOne {
+	Fonction{department(namedepartement)} to Department
+}
+
+relationship OneToMany {
+Personel{horraire(fistname)} to Horraires{personel}
+}
+// defining multiple OneToMany relationships with comments
+
+
+// defining multiple oneToOne relationships
+// Set pagination options
+//paginate Personel, Horraires with infinite-scroll
+paginate Fonction, Personel, Horraires with pagination
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+//angularSuffix * with hotpersonel

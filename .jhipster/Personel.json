@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "fonction",
+            "otherEntityName": "fonction",
+            "otherEntityField": "poste",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "personel"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "horraire",
+            "otherEntityName": "horraires",
+            "otherEntityRelationshipName": "personel"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fistname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sexe",
+            "fieldType": "Sexe",
+            "fieldValues": "HOMME,FEMME"
+        }
+    ],
+    "changelogDate": "20170622234004",
+    "entityTableName": "personel",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "hotpersonel"
+}
