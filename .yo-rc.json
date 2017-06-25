@@ -23,7 +23,7 @@
     "enableSocialSignIn": false,
     "jwtSecretKey": "e198d71e536b4f2a5b3b40cef4f767e9f6fea435",
     "clientFramework": "angular2",
-    "useSass": false,
+    "useSass": true,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",
     "testFrameworks": [],
