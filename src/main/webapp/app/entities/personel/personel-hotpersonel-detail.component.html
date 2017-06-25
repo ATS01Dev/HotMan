@@ -1,0 +1,39 @@
+
+<div *ngIf="personel">
+    <h2><span jhiTranslate="hotManApp.personel.detail.title">Personel</span> {{personel.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="hotManApp.personel.fistname">Fistname</span></dt>
+        <dd>
+            <span>{{personel.fistname}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.personel.lastname">Lastname</span></dt>
+        <dd>
+            <span>{{personel.lastname}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.personel.sexe">Sexe</span></dt>
+        <dd>
+            <span jhiTranslate="{{'hotManApp.Sexe.' + personel.sexe}}">{{personel.sexe}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.personel.fonction">Fonction</span></dt>
+        <dd>
+            <div *ngIf="personel.fonction">
+                <a [routerLink]="['/fonction-hotpersonel', personel.fonction?.id]">{{personel.fonction?.poste}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'personel-hotpersonel/'+ personel.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

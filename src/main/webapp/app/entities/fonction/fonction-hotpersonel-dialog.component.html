@@ -1,0 +1,94 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myFonctionLabel" jhiTranslate="hotManApp.fonction.home.createOrEditLabel">Create or edit a Fonction</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!fonction.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="fonction.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.fonction.poste" for="field_poste">Poste</label>
+            <input type="text" class="form-control" name="poste" id="field_poste"
+                [(ngModel)]="fonction.poste" required />
+            <div [hidden]="!(editForm.controls.poste?.dirty && editForm.controls.poste?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.poste?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.fonction.stardate" for="field_stardate">Stardate</label>
+            <div class="input-group">
+                <input id="field_stardate" type="text" class="form-control" name="stardate" ngbDatepicker  #stardateDp="ngbDatepicker" [(ngModel)]="fonction.stardate"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="stardateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.stardate?.dirty && editForm.controls.stardate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.stardate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.fonction.typecontrat" for="field_typecontrat">Typecontrat</label>
+            <input type="text" class="form-control" name="typecontrat" id="field_typecontrat"
+                [(ngModel)]="fonction.typecontrat"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.fonction.durrecontrat" for="field_durrecontrat">Durrecontrat</label>
+            <input type="text" class="form-control" name="durrecontrat" id="field_durrecontrat"
+                [(ngModel)]="fonction.durrecontrat"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.fonction.datenaissane" for="field_datenaissane">Datenaissane</label>
+            <div class="input-group">
+                <input id="field_datenaissane" type="text" class="form-control" name="datenaissane" ngbDatepicker  #datenaissaneDp="ngbDatepicker" [(ngModel)]="fonction.datenaissane"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="datenaissaneDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.fonction.phonenumber" for="field_phonenumber">Phonenumber</label>
+            <input type="text" class="form-control" name="phonenumber" id="field_phonenumber"
+                [(ngModel)]="fonction.phonenumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.fonction.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="fonction.email"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.fonction.salary" for="field_salary">Salary</label>
+            <input type="number" class="form-control" name="salary" id="field_salary"
+                [(ngModel)]="fonction.salary"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="hotManApp.fonction.department" for="field_department">Department</label>
+            <select class="form-control" id="field_department" name="department" [(ngModel)]="fonction.department">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="departmentOption.id === fonction.department?.id ? fonction.department : departmentOption" *ngFor="let departmentOption of departments; trackBy: trackDepartmentById">{{departmentOption.namedepartement}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

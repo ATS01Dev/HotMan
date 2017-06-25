@@ -1,0 +1,74 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "room",
+            "otherEntityName": "rooms",
+            "otherEntityField": "romsnumber",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "client(fistname)"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "groupe",
+            "otherEntityName": "groupe",
+            "otherEntityField": "namegroupe"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fistname",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cartnumenber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "telephone",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datecome",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datego",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "reservation",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170622204407",
+    "entityTableName": "client",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl"
+}

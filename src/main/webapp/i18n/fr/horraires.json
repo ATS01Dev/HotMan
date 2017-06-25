@@ -1,0 +1,25 @@
+{
+    "hotManApp": {
+        "horraires" : {
+            "home": {
+                "title": "Horraires",
+                "createLabel": "Créer un nouveau Horraires",
+                "createOrEditLabel": "Créer ou éditer un Horraires",
+                "search": "Recherche pour Horraires"
+            },
+            "created": "Un nouveau Horraires a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Horraires avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Horraires avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Horraires {{ id }} ?"
+            },
+            "detail": {
+                "title": "Horraires"
+            },
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "description": "Description",
+            "personel": "Personel"
+        }
+    }
+}

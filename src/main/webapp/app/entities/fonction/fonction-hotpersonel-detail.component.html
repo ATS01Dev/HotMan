@@ -1,0 +1,59 @@
+
+<div *ngIf="fonction">
+    <h2><span jhiTranslate="hotManApp.fonction.detail.title">Fonction</span> {{fonction.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="hotManApp.fonction.poste">Poste</span></dt>
+        <dd>
+            <span>{{fonction.poste}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.fonction.stardate">Stardate</span></dt>
+        <dd>
+            <span>{{fonction.stardate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.fonction.typecontrat">Typecontrat</span></dt>
+        <dd>
+            <span>{{fonction.typecontrat}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.fonction.durrecontrat">Durrecontrat</span></dt>
+        <dd>
+            <span>{{fonction.durrecontrat}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.fonction.datenaissane">Datenaissane</span></dt>
+        <dd>
+            <span>{{fonction.datenaissane | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.fonction.phonenumber">Phonenumber</span></dt>
+        <dd>
+            <span>{{fonction.phonenumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.fonction.email">Email</span></dt>
+        <dd>
+            <span>{{fonction.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.fonction.salary">Salary</span></dt>
+        <dd>
+            <span>{{fonction.salary}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.fonction.department">Department</span></dt>
+        <dd>
+            <div *ngIf="fonction.department">
+                <a [routerLink]="['/department-hotpersonel', fonction.department?.id]">{{fonction.department?.namedepartement}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'fonction-hotpersonel/'+ fonction.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

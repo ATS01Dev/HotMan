@@ -1,0 +1,24 @@
+{
+    "hotManApp": {
+        "codebadge" : {
+            "home": {
+                "title": "Codebadges",
+                "createLabel": "Create a new Codebadge",
+                "createOrEditLabel": "Create or edit a Codebadge",
+                "search": "Search for Codebadge"
+            },
+            "created": "A new Codebadge is created with identifier {{ param }}",
+            "updated": "A Codebadge is updated with identifier {{ param }}",
+            "deleted": "A Codebadge is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Codebadge {{ id }}?"
+            },
+            "detail": {
+                "title": "Codebadge"
+            },
+            "description": "Description",
+            "code": "Code",
+            "badges": "Badges"
+        }
+    }
+}

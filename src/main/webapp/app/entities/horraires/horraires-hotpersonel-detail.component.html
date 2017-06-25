@@ -1,0 +1,39 @@
+
+<div *ngIf="horraires">
+    <h2><span jhiTranslate="hotManApp.horraires.detail.title">Horraires</span> {{horraires.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="hotManApp.horraires.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{horraires.startDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.horraires.endDate">End Date</span></dt>
+        <dd>
+            <span>{{horraires.endDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.horraires.description">Description</span></dt>
+        <dd>
+            <span>{{horraires.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.horraires.personel">Personel</span></dt>
+        <dd>
+            <div *ngIf="horraires.personel">
+                <a [routerLink]="['/personel-hotpersonel', horraires.personel?.id]">{{horraires.personel?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'horraires-hotpersonel/'+ horraires.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

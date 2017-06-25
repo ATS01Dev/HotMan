@@ -1,0 +1,59 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "department",
+            "otherEntityName": "department",
+            "otherEntityField": "namedepartement",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "fonction"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "poste",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "stardate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "typecontrat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "durrecontrat",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "datenaissane",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "phonenumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "salary",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20170622234005",
+    "entityTableName": "fonction",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "hotpersonel"
+}
