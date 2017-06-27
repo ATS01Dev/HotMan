@@ -11,6 +11,7 @@ export class ClientService {
 
     private resourceUrl = 'api/clients';
     private resourceSearchUrl = 'api/_search/clients';
+    private resoureOderDatecome="/allOrderDatecome";
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
@@ -43,6 +44,11 @@ export class ClientService {
     query(req?: any): Observable<ResponseWrapper> {
         const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+    queryOrderDate(): Observable<ResponseWrapper> {
+        // const options = createRequestOption(req);
+        return this.http.get(`${this.resourceUrl}/${this.resoureOderDatecome}`)
             .map((res: Response) => this.convertResponse(res));
     }
 

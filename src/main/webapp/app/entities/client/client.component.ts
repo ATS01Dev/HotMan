@@ -25,6 +25,8 @@ export class ClientComponent implements OnInit, OnDestroy {
     reverse: any;
     totalItems: number;
     currentSearch: string;
+    trival: string;
+    nbclient: number;
 
     constructor(
         private clientService: ClientService,
@@ -64,6 +66,13 @@ export class ClientComponent implements OnInit, OnDestroy {
             sort: this.sort()
         }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
+    }
+    getClientOrderByDate(){
+        console.log('she come');
+        this.clientService.queryOrderDate().subscribe(
+            (res: ResponseWrapper) => this.clients = res.json,
             (res: ResponseWrapper) => this.onError(res.json)
         );
     }
@@ -133,6 +142,8 @@ export class ClientComponent implements OnInit, OnDestroy {
     }
 
     private onSuccess(data, headers) {
+        console.log(data);
+        this.nbclient = data.length;
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         for (let i = 0; i < data.length; i++) {
