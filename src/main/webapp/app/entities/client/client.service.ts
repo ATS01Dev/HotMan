@@ -11,7 +11,7 @@ export class ClientService {
 
     private resourceUrl = 'api/clients';
     private resourceSearchUrl = 'api/_search/clients';
-    private resoureOderDatecome="/allOrderDatecome";
+    private resoureOderDatecome= '/allOrderDatecome';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 

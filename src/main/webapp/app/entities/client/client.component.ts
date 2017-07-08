@@ -69,7 +69,7 @@ export class ClientComponent implements OnInit, OnDestroy {
             (res: ResponseWrapper) => this.onError(res.json)
         );
     }
-    getClientOrderByDate(){
+    getClientOrderByDate() {
         console.log('she come');
         this.clientService.queryOrderDate().subscribe(
             (res: ResponseWrapper) => this.clients = res.json,

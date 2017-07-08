@@ -25,6 +25,9 @@ import {
     ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
+import { DashBoardModule } from './Dashboard/dashboard.module';
+import { BilanComponent } from './bilan/bilan.component';
+import { BilanService} from './bilan/bilan.service';
 
 @NgModule({
     imports: [
@@ -36,6 +39,7 @@ import {
         HotManAdminModule,
         HotManAccountModule,
         HotManEntityModule,
+        DashBoardModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -44,13 +48,16 @@ import {
         ErrorComponent,
         PageRibbonComponent,
         ActiveMenuDirective,
-        FooterComponent
+        FooterComponent,
+        BilanComponent
+
     ],
     providers: [
         ProfileService,
         customHttpProvider(),
         PaginationConfig,
-        UserRouteAccessService
+        UserRouteAccessService,
+        BilanService
     ],
     bootstrap: [ JhiMainComponent ]
 })
