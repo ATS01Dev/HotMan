@@ -15,12 +15,25 @@ import { Account, LoginModalService, Principal } from '../shared';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
-
+    public sliders: Array<any> = [];
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
         private eventManager: JhiEventManager
     ) {
+        this.sliders.push({
+            imagePath: '../../content/images/hipster.png',
+            label: 'First slide label',
+            text: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+        }, {
+            imagePath: '../../content/images/slider2.jpg',
+            label: 'Second slide label',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+        }, {
+            imagePath: '../../content/images/slider3.jpg',
+            label: 'Third slide label',
+            text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+        });
     }
 
     ngOnInit() {

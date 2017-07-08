@@ -1,15 +1,38 @@
+<div class="row">
+    <div class="col-md-12">
+        <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let slider of sliders">
+                <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                <div class="carousel-caption">
+                    <h3>{{slider.label}}</h3>
+                    <p>{{slider.text}}</p>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+    </div>
 
+</div>
+
+<div class="row">
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-info'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
+    </div>
+</div>
+<hr/>
 <div class="row">
     <div class="col-md-3">
         <span class="hipster img-fluid img-rounded"></span>
     </div>
-    <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <jhi-pie-chart></jhi-pie-chart>
-        </div>
-    </div>
-
-    <jhi-pier-chart></jhi-pier-chart>
+    <jhi-bilan></jhi-bilan>
     <div class="col-md-9">
         <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
         <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
@@ -46,8 +69,5 @@
         <p>
             <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" jhiTranslate="home.github">Github</a>!
         </p>
-    </div>
-    <div class="col-lg-4">
-        <jhi-bilan></jhi-bilan>
     </div>
 </div>

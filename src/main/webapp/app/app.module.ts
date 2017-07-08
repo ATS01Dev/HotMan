@@ -49,8 +49,6 @@ import { BilanService} from './bilan/bilan.service';
         PageRibbonComponent,
         ActiveMenuDirective,
         FooterComponent,
-        BilanComponent
-
     ],
     providers: [
         ProfileService,
