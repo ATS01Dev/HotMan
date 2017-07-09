@@ -26,8 +26,8 @@ import {
     ErrorComponent
 } from './layouts';
 import { DashBoardModule } from './Dashboard/dashboard.module';
-import { BilanComponent } from './bilan/bilan.component';
 import { BilanService} from './bilan/bilan.service';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
 @NgModule({
     imports: [
@@ -49,6 +49,7 @@ import { BilanService} from './bilan/bilan.service';
         PageRibbonComponent,
         ActiveMenuDirective,
         FooterComponent,
+        SidebarComponent,
     ],
     providers: [
         ProfileService,
