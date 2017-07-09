@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.time.Duration;
 import java.util.List;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -49,9 +50,13 @@ public class ClientServiceImpl implements ClientService{
     public Client save(Client client) {
         log.debug("Request to save Client : {}", client);
         Client result = clientRepository.save(client);
-        Rooms rooms=client.getRoom();
-        roomsService.save(rooms.etat(Etatromms.OCCUPE));
-        clientSearchRepository.save(result);
+        if(client.getRoom() != null){
+            Rooms rooms=client.getRoom();
+            roomsService.save(rooms.etat(Etatromms.OCCUPE));
+        }
+
+        Duration d = Duration.between( client.getDatecome() ,client.getDatego());
+        clientSearchRepository.save(result.duration(d.toDays()));
         return result;
     }
 
