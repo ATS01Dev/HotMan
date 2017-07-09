@@ -2,10 +2,10 @@
     "hotManApp": {
         "badge" : {
             "home": {
-                "title": "Badges",
-                "createLabel": "Créer un nouveau Badge",
-                "createOrEditLabel": "Créer ou éditer un Badge",
-                "search": "Recherche pour Badge"
+                "title": "BABDGE",
+                "createLabel": "NOUVEAU",
+                "createOrEditLabel": "NOUVEAU/EDITER",
+                "search": "Recherche dans Badge"
             },
             "created": "Un nouveau Badge a été créé avec l'identifiant {{ param }}",
             "updated": "Le Badge avec l'identifiant {{ param }} a été mis à jour",
@@ -14,12 +14,12 @@
                 "question": "Etes-vous certain de vouloir supprimer le Badge {{ id }} ?"
             },
             "detail": {
-                "title": "Badge"
+                "title": "BADGE"
             },
-            "numberbadge": "Numberbadge",
+            "numberbadge": "N° Badge",
             "matricule": "Matricule",
-            "codes": "Codes",
-            "rooms": "Rooms"
+            "codes": "Code",
+            "rooms": "Chambre"
         }
     }
 }

@@ -2,10 +2,10 @@
     "hotManApp": {
         "codebadge" : {
             "home": {
-                "title": "Codebadges",
-                "createLabel": "Créer un nouveau Codebadge",
-                "createOrEditLabel": "Créer ou éditer un Codebadge",
-                "search": "Recherche pour Codebadge"
+                "title": "CODE DE BAGE",
+                "createLabel": "NOUVEAU",
+                "createOrEditLabel": "NOUVEAU/EDITER CODE",
+                "search": "Recherche dans Code de badge"
             },
             "created": "Un nouveau Codebadge a été créé avec l'identifiant {{ param }}",
             "updated": "Le Codebadge avec l'identifiant {{ param }} a été mis à jour",
@@ -14,7 +14,7 @@
                 "question": "Etes-vous certain de vouloir supprimer le Codebadge {{ id }} ?"
             },
             "detail": {
-                "title": "Codebadge"
+                "title": "CODE DE BAGE"
             },
             "description": "Description",
             "code": "Code",
