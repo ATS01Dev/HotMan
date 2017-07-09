@@ -9,6 +9,7 @@ import { HotManPersonelHotpersonelModule } from './personel/personel-hotpersonel
 import { HotManFonctionHotpersonelModule } from './fonction/fonction-hotpersonel.module';
 import { HotManDepartmentHotpersonelModule } from './department/department-hotpersonel.module';
 import { HotManHorrairesHotpersonelModule } from './horraires/horraires-hotpersonel.module';
+import { HotManReservationModule } from './reservation/reservation.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -22,6 +23,7 @@ import { HotManHorrairesHotpersonelModule } from './horraires/horraires-hotperso
         HotManFonctionHotpersonelModule,
         HotManDepartmentHotpersonelModule,
         HotManHorrairesHotpersonelModule,
+        HotManReservationModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

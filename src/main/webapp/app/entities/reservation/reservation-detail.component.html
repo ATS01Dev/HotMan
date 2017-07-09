@@ -1,0 +1,45 @@
+
+<div *ngIf="reservation">
+    <h2><span jhiTranslate="hotManApp.reservation.detail.title">Reservation</span> {{reservation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="hotManApp.reservation.name">Name</span></dt>
+        <dd>
+            <span>{{reservation.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.evenement">Evenement</span></dt>
+        <dd>
+            <span>{{reservation.evenement}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.date">Date</span></dt>
+        <dd>
+            <span>{{reservation.date | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.debut">Debut</span></dt>
+        <dd>
+            <span>{{reservation.debut | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.fin">Fin</span></dt>
+        <dd>
+            <span>{{reservation.fin | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.duree">Duree</span></dt>
+        <dd>
+            <span>{{reservation.duree}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'reservation/'+ reservation.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
