@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "rooms",
+            "otherEntityName": "rooms",
+            "relationshipType": "one-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "romsnumber",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "reservation"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "evenement",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "date_Revservation",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "date_debut",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "date_fin",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "duree",
+            "fieldType": "Long"
+        }
+    ],
+    "changelogDate": "20170718123053",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "reservation",
+    "pagination": "pagination"
+}

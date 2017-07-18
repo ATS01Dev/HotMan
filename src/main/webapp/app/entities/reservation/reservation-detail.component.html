@@ -1,0 +1,51 @@
+
+<div *ngIf="reservation">
+    <h2><span jhiTranslate="hotManApp.reservation.detail.title">Reservation</span> {{reservation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="hotManApp.reservation.name">Name</span></dt>
+        <dd>
+            <span>{{reservation.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.evenement">Evenement</span></dt>
+        <dd>
+            <span>{{reservation.evenement}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.date_Revservation">Date Revservation</span></dt>
+        <dd>
+            <span>{{reservation.date_Revservation | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.date_debut">Date Debut</span></dt>
+        <dd>
+            <span>{{reservation.date_debut | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.date_fin">Date Fin</span></dt>
+        <dd>
+            <span>{{reservation.date_fin | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.duree">Duree</span></dt>
+        <dd>
+            <span>{{reservation.duree}}</span>
+        </dd>
+        <dt><span jhiTranslate="hotManApp.reservation.rooms">Rooms</span></dt>
+        <dd>
+            <div *ngIf="reservation.rooms">
+                <a [routerLink]="['/rooms', reservation.rooms?.id]">{{reservation.rooms?.romsnumber}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'reservation/'+ reservation.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

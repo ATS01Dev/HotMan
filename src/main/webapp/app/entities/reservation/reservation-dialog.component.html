@@ -1,0 +1,89 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myReservationLabel" jhiTranslate="hotManApp.reservation.home.createOrEditLabel">Create or edit a Reservation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!reservation.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="reservation.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.reservation.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="reservation.name" required />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.reservation.evenement" for="field_evenement">Evenement</label>
+            <input type="text" class="form-control" name="evenement" id="field_evenement"
+                [(ngModel)]="reservation.evenement"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.reservation.date_Revservation" for="field_date_Revservation">Date Revservation</label>
+            <div class="d-flex">
+                <input id="field_date_Revservation" type="datetime-local" class="form-control" name="date_Revservation" [(ngModel)]="reservation.date_Revservation"
+                required  />
+            </div>
+            <div [hidden]="!(editForm.controls.date_Revservation?.dirty && editForm.controls.date_Revservation?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.date_Revservation?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.date_Revservation?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.reservation.date_debut" for="field_date_debut">Date Debut</label>
+            <div class="d-flex">
+                <input id="field_date_debut" type="datetime-local" class="form-control" name="date_debut" [(ngModel)]="reservation.date_debut"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.reservation.date_fin" for="field_date_fin">Date Fin</label>
+            <div class="d-flex">
+                <input id="field_date_fin" type="datetime-local" class="form-control" name="date_fin" [(ngModel)]="reservation.date_fin"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="hotManApp.reservation.duree" for="field_duree">Duree</label>
+            <input type="number" class="form-control" name="duree" id="field_duree"
+                [(ngModel)]="reservation.duree"  />
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="hotManApp.reservation.rooms" for="field_rooms">Rooms</label>
+            <select class="form-control" id="field_rooms" name="rooms" [(ngModel)]="reservation.rooms" required>
+                <option [ngValue]="roomsOption.id === reservation.rooms?.id ? reservation.rooms : roomsOption" *ngFor="let roomsOption of rooms; trackBy: trackRoomsById">{{roomsOption.romsnumber}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.rooms?.dirty && editForm.controls.rooms?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.rooms?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

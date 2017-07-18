@@ -16,6 +16,7 @@
                 "fonctionHotpersonel": "Fonction",
                 "departmentHotpersonel": "Department",
                 "horrairesHotpersonel": "Horraires",
+                "reservation": "Reservation",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
