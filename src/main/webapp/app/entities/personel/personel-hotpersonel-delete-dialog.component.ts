@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { PersonelHotpersonel } from './personel-hotpersonel.model';
 import { PersonelHotpersonelPopupService } from './personel-hotpersonel-popup.service';
@@ -19,7 +19,6 @@ export class PersonelHotpersonelDeleteDialogComponent {
     constructor(
         private personelService: PersonelHotpersonelService,
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,7 +35,6 @@ export class PersonelHotpersonelDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('hotManApp.personel.deleted', { param : id }, null);
     }
 }
 
@@ -46,7 +44,6 @@ export class PersonelHotpersonelDeleteDialogComponent {
 })
 export class PersonelHotpersonelDeletePopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -56,8 +53,8 @@ export class PersonelHotpersonelDeletePopupComponent implements OnInit, OnDestro
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.modalRef = this.personelPopupService
-                .open(PersonelHotpersonelDeleteDialogComponent, params['id']);
+            this.personelPopupService
+                .open(PersonelHotpersonelDeleteDialogComponent as Component, params['id']);
         });
     }
 

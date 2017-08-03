@@ -2,26 +2,26 @@
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622204407_added_entity_Client.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622204408_added_entity_Codebadge.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622204409_added_entity_Rooms.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622204410_added_entity_Badge.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622204411_added_entity_Groupe.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622234004_added_entity_Personel.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622234005_added_entity_Fonction.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622234006_added_entity_Department.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622234007_added_entity_Horraires.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170718123053_added_entity_Reservation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622204407_added_entity_Client.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622204408_added_entity_Codebadge.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622204409_added_entity_Rooms.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622204410_added_entity_Badge.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622204411_added_entity_Groupe.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622234004_added_entity_Personel.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622234005_added_entity_Fonction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622234006_added_entity_Department.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622234007_added_entity_Horraires.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170718123053_added_entity_Reservation.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="classpath:config/liquibase/changelog/20170622204407_added_entity_constraints_Client.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622204408_added_entity_constraints_Codebadge.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622204409_added_entity_constraints_Rooms.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622234004_added_entity_constraints_Personel.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622234005_added_entity_constraints_Fonction.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170622234007_added_entity_constraints_Horraires.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/20170718123053_added_entity_constraints_Reservation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622204407_added_entity_constraints_Client.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622204408_added_entity_constraints_Codebadge.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622204409_added_entity_constraints_Rooms.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622234004_added_entity_constraints_Personel.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622234005_added_entity_constraints_Fonction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170622234007_added_entity_constraints_Horraires.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170718123053_added_entity_constraints_Reservation.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

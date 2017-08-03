@@ -2,10 +2,10 @@
     "hotManApp": {
         "department" : {
             "home": {
-                "title": "DEPARTEMENTS",
-                "createLabel": "NOUVEAU",
-                "createOrEditLabel": "NOUVEAU/EDITER DEPARTEMENT",
-                "search": "Recherche dans Department"
+                "title": "Departments",
+                "createLabel": "Créer un nouveau Department",
+                "createOrEditLabel": "Créer ou éditer un Department",
+                "search": "Recherche pour Department"
             },
             "created": "Un nouveau Department a été créé avec l'identifiant {{ param }}",
             "updated": "Le Department avec l'identifiant {{ param }} a été mis à jour",
@@ -14,9 +14,9 @@
                 "question": "Etes-vous certain de vouloir supprimer le Department {{ id }} ?"
             },
             "detail": {
-                "title": "DEPARTEMENTS"
+                "title": "Department"
             },
-            "namedepartement": "Nom",
+            "namedepartement": "Namedepartement",
             "description": "Description"
         }
     }

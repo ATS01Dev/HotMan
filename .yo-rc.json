@@ -4,7 +4,7 @@
       "packageName": "bj.ats.hm",
       "nativeLanguage": "fr"
     },
-    "jhipsterVersion": "4.5.5",
+    "jhipsterVersion": "4.6.2",
     "baseName": "HotMan",
     "packageName": "bj.ats.hm",
     "packageFolder": "bj/ats/hm",
@@ -22,7 +22,7 @@
     "buildTool": "maven",
     "enableSocialSignIn": false,
     "jwtSecretKey": "e198d71e536b4f2a5b3b40cef4f767e9f6fea435",
-    "clientFramework": "angular2",
+    "clientFramework": "angularX",
     "useSass": true,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",

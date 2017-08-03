@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { Groupe } from './groupe.model';
 import { GroupePopupService } from './groupe-popup.service';
@@ -19,7 +19,6 @@ export class GroupeDeleteDialogComponent {
     constructor(
         private groupeService: GroupeService,
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,7 +35,6 @@ export class GroupeDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('hotManApp.groupe.deleted', { param : id }, null);
     }
 }
 
@@ -46,7 +44,6 @@ export class GroupeDeleteDialogComponent {
 })
 export class GroupeDeletePopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -56,8 +53,8 @@ export class GroupeDeletePopupComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.modalRef = this.groupePopupService
-                .open(GroupeDeleteDialogComponent, params['id']);
+            this.groupePopupService
+                .open(GroupeDeleteDialogComponent as Component, params['id']);
         });
     }
 

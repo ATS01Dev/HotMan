@@ -17,7 +17,6 @@ import { GroupeService } from './groupe.service';
 export class GroupeDialogComponent implements OnInit {
 
     groupe: Groupe;
-    authorities: any[];
     isSaving: boolean;
 
     constructor(
@@ -30,7 +29,6 @@ export class GroupeDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
 
     clear() {
@@ -41,24 +39,19 @@ export class GroupeDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.groupe.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.groupeService.update(this.groupe), false);
+                this.groupeService.update(this.groupe));
         } else {
             this.subscribeToSaveResponse(
-                this.groupeService.create(this.groupe), true);
+                this.groupeService.create(this.groupe));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Groupe>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Groupe>) {
         result.subscribe((res: Groupe) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Groupe, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? 'hotManApp.groupe.created'
-            : 'hotManApp.groupe.updated',
-            { param : result.id }, null);
-
+    private onSaveSuccess(result: Groupe) {
         this.eventManager.broadcast({ name: 'groupeListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -85,7 +78,6 @@ export class GroupeDialogComponent implements OnInit {
 })
 export class GroupePopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -96,11 +88,11 @@ export class GroupePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.groupePopupService
-                    .open(GroupeDialogComponent, params['id']);
+                this.groupePopupService
+                    .open(GroupeDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.groupePopupService
-                    .open(GroupeDialogComponent);
+                this.groupePopupService
+                    .open(GroupeDialogComponent as Component);
             }
         });
     }

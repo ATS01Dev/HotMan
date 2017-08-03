@@ -48,10 +48,8 @@ public interface RoomsService {
      * Search for the rooms corresponding to the query.
      *
      *  @param query the query of the search
-     *
+     *  
      *  @return the list of entities
      */
     List<Rooms> search(String query);
-
-    List<Rooms> findAllByEtatDISPONIBLE();
 }

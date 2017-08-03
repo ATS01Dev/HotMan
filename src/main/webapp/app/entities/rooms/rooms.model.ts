@@ -9,7 +9,7 @@ const enum Typedroom {
 const enum Etatromms {
     'DISPONIPLE',
     'OCCUPE',
-    'RESERVATION'
+    'ENTRETIEN'
 }
 
 export class Rooms implements BaseEntity {

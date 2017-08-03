@@ -2,10 +2,10 @@
     "hotManApp": {
         "client" : {
             "home": {
-                "title": "CLIENTS",
-                "createLabel": "NOUVEAU",
-                "createOrEditLabel": "NOUVEAU/EDITER CLIENT",
-                "search": "Recherche dans  Client"
+                "title": "Clients",
+                "createLabel": "Créer un nouveau Client",
+                "createOrEditLabel": "Créer ou éditer un Client",
+                "search": "Recherche pour Client"
             },
             "created": "Un nouveau Client a été créé avec l'identifiant {{ param }}",
             "updated": "Le Client avec l'identifiant {{ param }} a été mis à jour",
@@ -14,18 +14,18 @@
                 "question": "Etes-vous certain de vouloir supprimer le Client {{ id }} ?"
             },
             "detail": {
-                "title": "CLIENTS"
+                "title": "Client"
             },
-            "fistname": "Prénom",
-            "lastname": "Nom",
-            "cartnumenber": "N° de CNI/PASSPORT",
-            "telephone": "Téléphone",
+            "fistname": "Fistname",
+            "lastname": "Lastname",
+            "cartnumenber": "Cartnumenber",
+            "telephone": "Telephone",
             "email": "Email",
-            "datecome": "Arrivée",
-            "datego": "Depart",
-            "duration": "Durrée",
+            "datecome": "Datecome",
+            "datego": "Datego",
+            "duration": "Duration",
             "reservation": "Reservation",
-            "room": "Chambre",
+            "room": "Room",
             "groupe": "Groupe"
         }
     }
