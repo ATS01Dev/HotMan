@@ -25,7 +25,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         private viewContainerRef: ViewContainerRef,
         private themeConfig: BaThemeConfig
     ) {
-        themeConfig.config();
+       // themeConfig.config();
 
         // this._loadImages();
 
