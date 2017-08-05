@@ -25,6 +25,9 @@ import {
     ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
+import {TranslateModule} from '@ngx-translate/core';
+import {NgaModule} from './shared/nga.module';
+import {DashboardModule} from './features/dashboard/dashboard.module';
 
 @NgModule({
     imports: [
@@ -36,6 +39,9 @@ import {
         HotManAdminModule,
         HotManAccountModule,
         HotManEntityModule,
+        DashboardModule,
+        NgaModule.forRoot(),
+        TranslateModule.forRoot(),
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
