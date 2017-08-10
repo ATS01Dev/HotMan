@@ -2,7 +2,7 @@
     "hotManApp": {
         "groupe" : {
             "home": {
-                "title": "GROUPE",
+                "title": "Groupes",
                 "createLabel": "Créer un nouveau Groupe",
                 "createOrEditLabel": "Créer ou éditer un Groupe",
                 "search": "Recherche pour Groupe"
@@ -14,11 +14,11 @@
                 "question": "Etes-vous certain de vouloir supprimer le Groupe {{ id }} ?"
             },
             "detail": {
-                "title": "GROUPE"
+                "title": "Groupe"
             },
-            "namegroupe": "Nom",
-            "nbperson": "Effectif",
-            "client": "Clients"
+            "namegroupe": "Namegroupe",
+            "nbperson": "Nbperson",
+            "client": "Client"
         }
     }
 }

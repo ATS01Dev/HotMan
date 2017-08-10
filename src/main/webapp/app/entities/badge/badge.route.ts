@@ -9,8 +9,6 @@ import { BadgeDetailComponent } from './badge-detail.component';
 import { BadgePopupComponent } from './badge-dialog.component';
 import { BadgeDeletePopupComponent } from './badge-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 export const badgeRoute: Routes = [
     {
         path: 'badge',

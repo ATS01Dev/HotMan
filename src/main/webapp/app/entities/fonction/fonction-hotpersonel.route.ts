@@ -9,8 +9,6 @@ import { FonctionHotpersonelDetailComponent } from './fonction-hotpersonel-detai
 import { FonctionHotpersonelPopupComponent } from './fonction-hotpersonel-dialog.component';
 import { FonctionHotpersonelDeletePopupComponent } from './fonction-hotpersonel-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 @Injectable()
 export class FonctionHotpersonelResolvePagingParams implements Resolve<any> {
 

@@ -9,8 +9,6 @@ import { CodebadgeDetailComponent } from './codebadge-detail.component';
 import { CodebadgePopupComponent } from './codebadge-dialog.component';
 import { CodebadgeDeletePopupComponent } from './codebadge-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 export const codebadgeRoute: Routes = [
     {
         path: 'codebadge',

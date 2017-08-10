@@ -9,8 +9,6 @@ import { RoomsDetailComponent } from './rooms-detail.component';
 import { RoomsPopupComponent } from './rooms-dialog.component';
 import { RoomsDeletePopupComponent } from './rooms-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 export const roomsRoute: Routes = [
     {
         path: 'rooms',

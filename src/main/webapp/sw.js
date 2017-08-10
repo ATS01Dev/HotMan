@@ -1,5 +1,5 @@
-var dataCacheName = '"HotMan-v1';
-var cacheName = '"HotMan-1';
+var dataCacheName = 'HotMan-v1';
+var cacheName = 'HotMan-1';
 var filesToCache = [
     '/',
     '/index.html'

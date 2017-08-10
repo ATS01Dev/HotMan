@@ -6,16 +6,16 @@
             "home": "Accueil",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
-                "main": "OPTION",
-                "client": "CLIENTS",
-                "codebadge": "CODE DE BADGE",
-                "rooms": "CHAMBRE",
-                "badge": "BADGE",
-                "groupe": "GROUPE",
-                "personelHotpersonel": "PERSONNEL",
-                "fonctionHotpersonel": "CONTRAT",
-                "departmentHotpersonel": "DEPARTEMENT",
-                "horrairesHotpersonel": "HORRAIRE",
+                "main": "Entités",
+                "client": "Client",
+                "codebadge": "Codebadge",
+                "rooms": "Rooms",
+                "badge": "Badge",
+                "groupe": "Groupe",
+                "personelHotpersonel": "Personel",
+                "fonctionHotpersonel": "Fonction",
+                "departmentHotpersonel": "Department",
+                "horrairesHotpersonel": "Horraires",
                 "reservation": "Reservation",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
@@ -138,8 +138,5 @@
         "emailexists": "Email déjà utilisé !",
         "idexists": "Une nouvelle entité {{entityName}} ne peut pas avoir d'ID !"
     },
-    "footer": "Ceci est votre pied de page",
-    "dashboard":{
-        "dhome":"Dashboard"
-    }
+    "footer": "Ceci est votre pied de page"
 }

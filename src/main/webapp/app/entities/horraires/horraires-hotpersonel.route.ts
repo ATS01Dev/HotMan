@@ -9,8 +9,6 @@ import { HorrairesHotpersonelDetailComponent } from './horraires-hotpersonel-det
 import { HorrairesHotpersonelPopupComponent } from './horraires-hotpersonel-dialog.component';
 import { HorrairesHotpersonelDeletePopupComponent } from './horraires-hotpersonel-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 @Injectable()
 export class HorrairesHotpersonelResolvePagingParams implements Resolve<any> {
 

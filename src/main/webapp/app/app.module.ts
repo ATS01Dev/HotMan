@@ -25,21 +25,29 @@ import {
     ActiveMenuDirective,
     ErrorComponent
 } from './layouts';
-import { DashBoardModule } from './Dashboard/dashboard.module';
-import { BilanService} from './bilan/bilan.service';
-import { SidebarComponent } from './layouts/sidebar/sidebar.component';
+import {TranslateModule} from '@ngx-translate/core';
+import {NgaModule} from './shared/nga.module';
+import {DashboardModule} from './features/dashboard/dashboard.module';
+import {PagesModule} from './pages/pages.module';
+import {App} from './layouts/ng2main/app.component';
+import {GlobalState} from './global.state';
+import {routing} from "./app.route";
 
 @NgModule({
     imports: [
         BrowserModule,
-        LayoutRoutingModule,
+        PagesModule,
+        // LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         HotManSharedModule,
         HotManHomeModule,
         HotManAdminModule,
         HotManAccountModule,
         HotManEntityModule,
-        DashBoardModule,
+        DashboardModule,
+        NgaModule.forRoot(),
+        TranslateModule.forRoot(),
+        routing
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -49,15 +57,16 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
         PageRibbonComponent,
         ActiveMenuDirective,
         FooterComponent,
-        SidebarComponent,
+        App,
     ],
     providers: [
         ProfileService,
         customHttpProvider(),
         PaginationConfig,
         UserRouteAccessService,
-        BilanService
+        GlobalState
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [ App ]
+    // bootstrap: [ JhiMainComponent ] jhipster default
 })
 export class HotManAppModule {}

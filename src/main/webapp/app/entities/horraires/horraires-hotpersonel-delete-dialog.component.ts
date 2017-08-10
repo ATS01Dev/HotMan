@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { HorrairesHotpersonel } from './horraires-hotpersonel.model';
 import { HorrairesHotpersonelPopupService } from './horraires-hotpersonel-popup.service';
@@ -19,7 +19,6 @@ export class HorrairesHotpersonelDeleteDialogComponent {
     constructor(
         private horrairesService: HorrairesHotpersonelService,
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -36,7 +35,6 @@ export class HorrairesHotpersonelDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
-        this.alertService.success('hotManApp.horraires.deleted', { param : id }, null);
     }
 }
 
@@ -46,7 +44,6 @@ export class HorrairesHotpersonelDeleteDialogComponent {
 })
 export class HorrairesHotpersonelDeletePopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -56,8 +53,8 @@ export class HorrairesHotpersonelDeletePopupComponent implements OnInit, OnDestr
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.modalRef = this.horrairesPopupService
-                .open(HorrairesHotpersonelDeleteDialogComponent, params['id']);
+            this.horrairesPopupService
+                .open(HorrairesHotpersonelDeleteDialogComponent as Component, params['id']);
         });
     }
 

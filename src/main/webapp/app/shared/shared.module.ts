@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA, ModuleWithProviders} from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import {
@@ -46,4 +46,10 @@ import {
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
-export class HotManSharedModule {}
+export class HotManSharedModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: HotManSharedModule
+        };
+    }
+}

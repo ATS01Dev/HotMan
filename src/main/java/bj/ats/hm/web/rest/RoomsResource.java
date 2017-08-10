@@ -95,11 +95,6 @@ public class RoomsResource {
         log.debug("REST request to get all Rooms");
         return roomsService.findAll();
     }
-    @GetMapping("/rooms/etat")
-    @Timed
-    List<Rooms> getAllRoomsByEtat(){
-        return roomsService.findAllByEtatDISPONIBLE();
-    }
 
     /**
      * GET  /rooms/:id : get the "id" rooms.

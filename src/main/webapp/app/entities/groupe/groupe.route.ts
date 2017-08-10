@@ -9,8 +9,6 @@ import { GroupeDetailComponent } from './groupe-detail.component';
 import { GroupePopupComponent } from './groupe-dialog.component';
 import { GroupeDeletePopupComponent } from './groupe-delete-dialog.component';
 
-import { Principal } from '../../shared';
-
 export const groupeRoute: Routes = [
     {
         path: 'groupe',

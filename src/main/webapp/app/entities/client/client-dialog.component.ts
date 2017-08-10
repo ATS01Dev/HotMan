@@ -20,7 +20,6 @@ import { ResponseWrapper } from '../../shared';
 export class ClientDialogComponent implements OnInit {
 
     client: Client;
-    authorities: any[];
     isSaving: boolean;
 
     rooms: Rooms[];
@@ -39,7 +38,6 @@ export class ClientDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.roomsService
             .query({filter: 'client(fistname)-is-null'})
             .subscribe((res: ResponseWrapper) => {
@@ -65,24 +63,19 @@ export class ClientDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.client.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.clientService.update(this.client), false);
+                this.clientService.update(this.client));
         } else {
             this.subscribeToSaveResponse(
-                this.clientService.create(this.client), true);
+                this.clientService.create(this.client));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Client>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Client>) {
         result.subscribe((res: Client) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Client, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? 'hotManApp.client.created'
-            : 'hotManApp.client.updated',
-            { param : result.id }, null);
-
+    private onSaveSuccess(result: Client) {
         this.eventManager.broadcast({ name: 'clientListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -117,7 +110,6 @@ export class ClientDialogComponent implements OnInit {
 })
 export class ClientPopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -128,11 +120,11 @@ export class ClientPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.clientPopupService
-                    .open(ClientDialogComponent, params['id']);
+                this.clientPopupService
+                    .open(ClientDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.clientPopupService
-                    .open(ClientDialogComponent);
+                this.clientPopupService
+                    .open(ClientDialogComponent as Component);
             }
         });
     }

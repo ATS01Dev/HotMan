@@ -1,12 +1,9 @@
 package bj.ats.hm.service.impl;
 
-import bj.ats.hm.domain.Rooms;
-import bj.ats.hm.domain.enumeration.Etatromms;
 import bj.ats.hm.service.ClientService;
 import bj.ats.hm.domain.Client;
 import bj.ats.hm.repository.ClientRepository;
 import bj.ats.hm.repository.search.ClientSearchRepository;
-import bj.ats.hm.service.RoomsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,9 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.time.Duration;
-import java.util.List;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -32,12 +26,10 @@ public class ClientServiceImpl implements ClientService{
     private final ClientRepository clientRepository;
 
     private final ClientSearchRepository clientSearchRepository;
-    private final RoomsService roomsService;
 
-    public ClientServiceImpl(ClientRepository clientRepository, ClientSearchRepository clientSearchRepository, RoomsService roomsService) {
+    public ClientServiceImpl(ClientRepository clientRepository, ClientSearchRepository clientSearchRepository) {
         this.clientRepository = clientRepository;
         this.clientSearchRepository = clientSearchRepository;
-        this.roomsService = roomsService;
     }
 
     /**
@@ -50,13 +42,7 @@ public class ClientServiceImpl implements ClientService{
     public Client save(Client client) {
         log.debug("Request to save Client : {}", client);
         Client result = clientRepository.save(client);
-        if(client.getRoom() != null){
-            Rooms rooms=client.getRoom();
-            roomsService.save(rooms.etat(Etatromms.OCCUPE));
-        }
-
-        Duration d = Duration.between( client.getDatecome() ,client.getDatego());
-        clientSearchRepository.save(result.duration(d.toDays()));
+        clientSearchRepository.save(result);
         return result;
     }
 
@@ -111,15 +97,5 @@ public class ClientServiceImpl implements ClientService{
         log.debug("Request to search for a page of Clients for query {}", query);
         Page<Client> result = clientSearchRepository.search(queryStringQuery(query), pageable);
         return result;
-    }
-
-    @Override
-    public long Count() {
-        return clientRepository.count();
-    }
-
-    @Override
-    public List<Client> findAllByOrderByDatecome() {
-        return clientRepository.findAllByOrderByDatecomeDesc();
     }
 }

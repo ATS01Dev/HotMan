@@ -19,7 +19,6 @@ import { ResponseWrapper } from '../../shared';
 export class CodebadgeDialogComponent implements OnInit {
 
     codebadge: Codebadge;
-    authorities: any[];
     isSaving: boolean;
 
     badges: Badge[];
@@ -35,7 +34,6 @@ export class CodebadgeDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.badgeService.query()
             .subscribe((res: ResponseWrapper) => { this.badges = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -48,24 +46,19 @@ export class CodebadgeDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.codebadge.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.codebadgeService.update(this.codebadge), false);
+                this.codebadgeService.update(this.codebadge));
         } else {
             this.subscribeToSaveResponse(
-                this.codebadgeService.create(this.codebadge), true);
+                this.codebadgeService.create(this.codebadge));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Codebadge>, isCreated: boolean) {
+    private subscribeToSaveResponse(result: Observable<Codebadge>) {
         result.subscribe((res: Codebadge) =>
-            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Codebadge, isCreated: boolean) {
-        this.alertService.success(
-            isCreated ? 'hotManApp.codebadge.created'
-            : 'hotManApp.codebadge.updated',
-            { param : result.id }, null);
-
+    private onSaveSuccess(result: Codebadge) {
         this.eventManager.broadcast({ name: 'codebadgeListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -96,7 +89,6 @@ export class CodebadgeDialogComponent implements OnInit {
 })
 export class CodebadgePopupComponent implements OnInit, OnDestroy {
 
-    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -107,11 +99,11 @@ export class CodebadgePopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.modalRef = this.codebadgePopupService
-                    .open(CodebadgeDialogComponent, params['id']);
+                this.codebadgePopupService
+                    .open(CodebadgeDialogComponent as Component, params['id']);
             } else {
-                this.modalRef = this.codebadgePopupService
-                    .open(CodebadgeDialogComponent);
+                this.codebadgePopupService
+                    .open(CodebadgeDialogComponent as Component);
             }
         });
     }

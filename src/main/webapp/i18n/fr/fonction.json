@@ -2,10 +2,10 @@
     "hotManApp": {
         "fonction" : {
             "home": {
-                "title": "FONCTION",
-                "createLabel": "NOUVEAU",
-                "createOrEditLabel": "NOUVEAU/EDITER FONCTION",
-                "search": "Recherche dans Fonction"
+                "title": "Fonctions",
+                "createLabel": "Créer un nouveau Fonction",
+                "createOrEditLabel": "Créer ou éditer un Fonction",
+                "search": "Recherche pour Fonction"
             },
             "created": "Un nouveau Fonction a été créé avec l'identifiant {{ param }}",
             "updated": "Le Fonction avec l'identifiant {{ param }} a été mis à jour",
@@ -14,16 +14,16 @@
                 "question": "Etes-vous certain de vouloir supprimer le Fonction {{ id }} ?"
             },
             "detail": {
-                "title": "FONCTION"
+                "title": "Fonction"
             },
             "poste": "Poste",
-            "stardate": "Prise de Fonction",
-            "typecontrat": "Type de contrat",
-            "durrecontrat": "Durée du contrat",
-            "datenaissane": "Né lé ",
-            "phonenumber": "Telephone",
+            "stardate": "Stardate",
+            "typecontrat": "Typecontrat",
+            "durrecontrat": "Durrecontrat",
+            "datenaissane": "Datenaissane",
+            "phonenumber": "Phonenumber",
             "email": "Email",
-            "salary": "Salaire",
+            "salary": "Salary",
             "department": "Department"
         }
     }

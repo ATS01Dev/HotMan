@@ -2,10 +2,10 @@
     "hotManApp": {
         "personel" : {
             "home": {
-                "title": "PERSONNEL",
-                "createLabel": "NOUVEAU",
-                "createOrEditLabel": "NOUVEAU/EDITER PERSONNEL",
-                "search": "Recherche dans Personnel"
+                "title": "Personels",
+                "createLabel": "Créer un nouveau Personel",
+                "createOrEditLabel": "Créer ou éditer un Personel",
+                "search": "Recherche pour Personel"
             },
             "created": "Un nouveau Personel a été créé avec l'identifiant {{ param }}",
             "updated": "Le Personel avec l'identifiant {{ param }} a été mis à jour",
@@ -14,10 +14,10 @@
                 "question": "Etes-vous certain de vouloir supprimer le Personel {{ id }} ?"
             },
             "detail": {
-                "title": "PERSONNEL"
+                "title": "Personel"
             },
-            "fistname": "Prénoms",
-            "lastname": "Nom",
+            "fistname": "Fistname",
+            "lastname": "Lastname",
             "sexe": "Sexe",
             "fonction": "Fonction",
             "horraire": "Horraire"
