@@ -9,6 +9,8 @@ import { ReservationDetailComponent } from './reservation-detail.component';
 import { ReservationPopupComponent } from './reservation-dialog.component';
 import { ReservationDeletePopupComponent } from './reservation-delete-dialog.component';
 
+import { Principal } from '../../shared';
+
 @Injectable()
 export class ReservationResolvePagingParams implements Resolve<any> {
 

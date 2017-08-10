@@ -7,42 +7,32 @@ import { HorrairesHotpersonelService } from './horraires-hotpersonel.service';
 
 @Injectable()
 export class HorrairesHotpersonelPopupService {
-    private ngbModalRef: NgbModalRef;
-
+    private isOpen = false;
     constructor(
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private horrairesService: HorrairesHotpersonelService
 
-    ) {
-        this.ngbModalRef = null;
-    }
+    ) {}
 
-    open(component: Component, id?: number | any): Promise<NgbModalRef> {
-        return new Promise<NgbModalRef>((resolve, reject) => {
-            const isOpen = this.ngbModalRef !== null;
-            if (isOpen) {
-                resolve(this.ngbModalRef);
-            }
+    open(component: Component, id?: number | any): NgbModalRef {
+        if (this.isOpen) {
+            return;
+        }
+        this.isOpen = true;
 
-            if (id) {
-                this.horrairesService.find(id).subscribe((horraires) => {
-                    horraires.startDate = this.datePipe
-                        .transform(horraires.startDate, 'yyyy-MM-ddThh:mm');
-                    horraires.endDate = this.datePipe
-                        .transform(horraires.endDate, 'yyyy-MM-ddThh:mm');
-                    this.ngbModalRef = this.horrairesModalRef(component, horraires);
-                    resolve(this.ngbModalRef);
-                });
-            } else {
-                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
-                setTimeout(() => {
-                    this.ngbModalRef = this.horrairesModalRef(component, new HorrairesHotpersonel());
-                    resolve(this.ngbModalRef);
-                }, 0);
-            }
-        });
+        if (id) {
+            this.horrairesService.find(id).subscribe((horraires) => {
+                horraires.startDate = this.datePipe
+                    .transform(horraires.startDate, 'yyyy-MM-ddThh:mm');
+                horraires.endDate = this.datePipe
+                    .transform(horraires.endDate, 'yyyy-MM-ddThh:mm');
+                this.horrairesModalRef(component, horraires);
+            });
+        } else {
+            return this.horrairesModalRef(component, new HorrairesHotpersonel());
+        }
     }
 
     horrairesModalRef(component: Component, horraires: HorrairesHotpersonel): NgbModalRef {
@@ -50,10 +40,10 @@ export class HorrairesHotpersonelPopupService {
         modalRef.componentInstance.horraires = horraires;
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
-            this.ngbModalRef = null;
+            this.isOpen = false;
         }, (reason) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
-            this.ngbModalRef = null;
+            this.isOpen = false;
         });
         return modalRef;
     }

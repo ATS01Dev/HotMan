@@ -19,6 +19,7 @@ import { ResponseWrapper } from '../../shared';
 export class HorrairesHotpersonelDialogComponent implements OnInit {
 
     horraires: HorrairesHotpersonel;
+    authorities: any[];
     isSaving: boolean;
 
     personels: PersonelHotpersonel[];
@@ -34,6 +35,7 @@ export class HorrairesHotpersonelDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.personelService.query()
             .subscribe((res: ResponseWrapper) => { this.personels = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -46,19 +48,24 @@ export class HorrairesHotpersonelDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.horraires.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.horrairesService.update(this.horraires));
+                this.horrairesService.update(this.horraires), false);
         } else {
             this.subscribeToSaveResponse(
-                this.horrairesService.create(this.horraires));
+                this.horrairesService.create(this.horraires), true);
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<HorrairesHotpersonel>) {
+    private subscribeToSaveResponse(result: Observable<HorrairesHotpersonel>, isCreated: boolean) {
         result.subscribe((res: HorrairesHotpersonel) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: HorrairesHotpersonel) {
+    private onSaveSuccess(result: HorrairesHotpersonel, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'hotManApp.horraires.created'
+            : 'hotManApp.horraires.updated',
+            { param : result.id }, null);
+
         this.eventManager.broadcast({ name: 'horrairesListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -89,6 +96,7 @@ export class HorrairesHotpersonelDialogComponent implements OnInit {
 })
 export class HorrairesHotpersonelPopupComponent implements OnInit, OnDestroy {
 
+    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -99,11 +107,11 @@ export class HorrairesHotpersonelPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.horrairesPopupService
-                    .open(HorrairesHotpersonelDialogComponent as Component, params['id']);
+                this.modalRef = this.horrairesPopupService
+                    .open(HorrairesHotpersonelDialogComponent, params['id']);
             } else {
-                this.horrairesPopupService
-                    .open(HorrairesHotpersonelDialogComponent as Component);
+                this.modalRef = this.horrairesPopupService
+                    .open(HorrairesHotpersonelDialogComponent);
             }
         });
     }

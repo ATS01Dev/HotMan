@@ -9,6 +9,8 @@ import { DepartmentHotpersonelDetailComponent } from './department-hotpersonel-d
 import { DepartmentHotpersonelPopupComponent } from './department-hotpersonel-dialog.component';
 import { DepartmentHotpersonelDeletePopupComponent } from './department-hotpersonel-delete-dialog.component';
 
+import { Principal } from '../../shared';
+
 export const departmentRoute: Routes = [
     {
         path: 'department-hotpersonel',

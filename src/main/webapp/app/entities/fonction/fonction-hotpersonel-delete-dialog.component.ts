@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { FonctionHotpersonel } from './fonction-hotpersonel.model';
 import { FonctionHotpersonelPopupService } from './fonction-hotpersonel-popup.service';
@@ -19,6 +19,7 @@ export class FonctionHotpersonelDeleteDialogComponent {
     constructor(
         private fonctionService: FonctionHotpersonelService,
         public activeModal: NgbActiveModal,
+        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -35,6 +36,7 @@ export class FonctionHotpersonelDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+        this.alertService.success('hotManApp.fonction.deleted', { param : id }, null);
     }
 }
 
@@ -44,6 +46,7 @@ export class FonctionHotpersonelDeleteDialogComponent {
 })
 export class FonctionHotpersonelDeletePopupComponent implements OnInit, OnDestroy {
 
+    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -53,8 +56,8 @@ export class FonctionHotpersonelDeletePopupComponent implements OnInit, OnDestro
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.fonctionPopupService
-                .open(FonctionHotpersonelDeleteDialogComponent as Component, params['id']);
+            this.modalRef = this.fonctionPopupService
+                .open(FonctionHotpersonelDeleteDialogComponent, params['id']);
         });
     }
 

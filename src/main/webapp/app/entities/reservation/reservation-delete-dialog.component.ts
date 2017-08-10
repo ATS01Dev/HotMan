@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { Reservation } from './reservation.model';
 import { ReservationPopupService } from './reservation-popup.service';
@@ -19,6 +19,7 @@ export class ReservationDeleteDialogComponent {
     constructor(
         private reservationService: ReservationService,
         public activeModal: NgbActiveModal,
+        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -35,6 +36,7 @@ export class ReservationDeleteDialogComponent {
             });
             this.activeModal.dismiss(true);
         });
+        this.alertService.success('hotManApp.reservation.deleted', { param : id }, null);
     }
 }
 
@@ -44,6 +46,7 @@ export class ReservationDeleteDialogComponent {
 })
 export class ReservationDeletePopupComponent implements OnInit, OnDestroy {
 
+    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -53,8 +56,8 @@ export class ReservationDeletePopupComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.reservationPopupService
-                .open(ReservationDeleteDialogComponent as Component, params['id']);
+            this.modalRef = this.reservationPopupService
+                .open(ReservationDeleteDialogComponent, params['id']);
         });
     }
 

@@ -6,51 +6,41 @@ import { FonctionHotpersonelService } from './fonction-hotpersonel.service';
 
 @Injectable()
 export class FonctionHotpersonelPopupService {
-    private ngbModalRef: NgbModalRef;
-
+    private isOpen = false;
     constructor(
         private modalService: NgbModal,
         private router: Router,
         private fonctionService: FonctionHotpersonelService
 
-    ) {
-        this.ngbModalRef = null;
-    }
+    ) {}
 
-    open(component: Component, id?: number | any): Promise<NgbModalRef> {
-        return new Promise<NgbModalRef>((resolve, reject) => {
-            const isOpen = this.ngbModalRef !== null;
-            if (isOpen) {
-                resolve(this.ngbModalRef);
-            }
+    open(component: Component, id?: number | any): NgbModalRef {
+        if (this.isOpen) {
+            return;
+        }
+        this.isOpen = true;
 
-            if (id) {
-                this.fonctionService.find(id).subscribe((fonction) => {
-                    if (fonction.stardate) {
-                        fonction.stardate = {
-                            year: fonction.stardate.getFullYear(),
-                            month: fonction.stardate.getMonth() + 1,
-                            day: fonction.stardate.getDate()
-                        };
-                    }
-                    if (fonction.datenaissane) {
-                        fonction.datenaissane = {
-                            year: fonction.datenaissane.getFullYear(),
-                            month: fonction.datenaissane.getMonth() + 1,
-                            day: fonction.datenaissane.getDate()
-                        };
-                    }
-                    this.ngbModalRef = this.fonctionModalRef(component, fonction);
-                    resolve(this.ngbModalRef);
-                });
-            } else {
-                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
-                setTimeout(() => {
-                    this.ngbModalRef = this.fonctionModalRef(component, new FonctionHotpersonel());
-                    resolve(this.ngbModalRef);
-                }, 0);
-            }
-        });
+        if (id) {
+            this.fonctionService.find(id).subscribe((fonction) => {
+                if (fonction.stardate) {
+                    fonction.stardate = {
+                        year: fonction.stardate.getFullYear(),
+                        month: fonction.stardate.getMonth() + 1,
+                        day: fonction.stardate.getDate()
+                    };
+                }
+                if (fonction.datenaissane) {
+                    fonction.datenaissane = {
+                        year: fonction.datenaissane.getFullYear(),
+                        month: fonction.datenaissane.getMonth() + 1,
+                        day: fonction.datenaissane.getDate()
+                    };
+                }
+                this.fonctionModalRef(component, fonction);
+            });
+        } else {
+            return this.fonctionModalRef(component, new FonctionHotpersonel());
+        }
     }
 
     fonctionModalRef(component: Component, fonction: FonctionHotpersonel): NgbModalRef {
@@ -58,10 +48,10 @@ export class FonctionHotpersonelPopupService {
         modalRef.componentInstance.fonction = fonction;
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
-            this.ngbModalRef = null;
+            this.isOpen = false;
         }, (reason) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
-            this.ngbModalRef = null;
+            this.isOpen = false;
         });
         return modalRef;
     }

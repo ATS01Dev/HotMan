@@ -4,7 +4,7 @@ import { UserRouteAccessService } from '../shared';
 import { HomeComponent } from './';
 
 export const HOME_ROUTE: Route = {
-    path: 'home',
+    path: '',
     component: HomeComponent,
     data: {
         authorities: [],

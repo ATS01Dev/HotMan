@@ -19,6 +19,7 @@ import { ResponseWrapper } from '../../shared';
 export class PersonelHotpersonelDialogComponent implements OnInit {
 
     personel: PersonelHotpersonel;
+    authorities: any[];
     isSaving: boolean;
 
     fonctions: FonctionHotpersonel[];
@@ -34,6 +35,7 @@ export class PersonelHotpersonelDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.fonctionService
             .query({filter: 'personel-is-null'})
             .subscribe((res: ResponseWrapper) => {
@@ -57,19 +59,24 @@ export class PersonelHotpersonelDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.personel.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.personelService.update(this.personel));
+                this.personelService.update(this.personel), false);
         } else {
             this.subscribeToSaveResponse(
-                this.personelService.create(this.personel));
+                this.personelService.create(this.personel), true);
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<PersonelHotpersonel>) {
+    private subscribeToSaveResponse(result: Observable<PersonelHotpersonel>, isCreated: boolean) {
         result.subscribe((res: PersonelHotpersonel) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: PersonelHotpersonel) {
+    private onSaveSuccess(result: PersonelHotpersonel, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'hotManApp.personel.created'
+            : 'hotManApp.personel.updated',
+            { param : result.id }, null);
+
         this.eventManager.broadcast({ name: 'personelListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -100,6 +107,7 @@ export class PersonelHotpersonelDialogComponent implements OnInit {
 })
 export class PersonelHotpersonelPopupComponent implements OnInit, OnDestroy {
 
+    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -110,11 +118,11 @@ export class PersonelHotpersonelPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.personelPopupService
-                    .open(PersonelHotpersonelDialogComponent as Component, params['id']);
+                this.modalRef = this.personelPopupService
+                    .open(PersonelHotpersonelDialogComponent, params['id']);
             } else {
-                this.personelPopupService
-                    .open(PersonelHotpersonelDialogComponent as Component);
+                this.modalRef = this.personelPopupService
+                    .open(PersonelHotpersonelDialogComponent);
             }
         });
     }

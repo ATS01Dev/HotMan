@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { UserModalService } from './user-modal.service';
 import { JhiLanguageHelper, User, UserService } from '../../shared';
@@ -22,6 +22,7 @@ export class UserMgmtDialogComponent implements OnInit {
         public activeModal: NgbActiveModal,
         private languageHelper: JhiLanguageHelper,
         private userService: UserService,
+        private alertService: JhiAlertService,
         private eventManager: JhiEventManager
     ) {}
 
@@ -43,13 +44,17 @@ export class UserMgmtDialogComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.user.id !== null) {
-            this.userService.update(this.user).subscribe((response) => this.onSaveSuccess(response), () => this.onSaveError());
+            this.userService.update(this.user).subscribe((response) => this.onSaveSuccess(response, false), () => this.onSaveError());
         } else {
-            this.userService.create(this.user).subscribe((response) => this.onSaveSuccess(response), () => this.onSaveError());
+            this.userService.create(this.user).subscribe((response) => this.onSaveSuccess(response, true), () => this.onSaveError());
         }
     }
 
-    private onSaveSuccess(result) {
+    private onSaveSuccess(result, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'userManagement.created'
+            : 'userManagement.updated',
+            { param : result.json.login }, null);
         this.eventManager.broadcast({ name: 'userListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -77,9 +82,9 @@ export class UserDialogComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['login'] ) {
-                this.modalRef = this.userModalService.open(UserMgmtDialogComponent as Component, params['login']);
+                this.modalRef = this.userModalService.open(UserMgmtDialogComponent, params['login']);
             } else {
-                this.modalRef = this.userModalService.open(UserMgmtDialogComponent as Component);
+                this.modalRef = this.userModalService.open(UserMgmtDialogComponent);
             }
         });
     }

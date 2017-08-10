@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 import {
@@ -20,11 +20,7 @@ import {
     ],
     providers: [
         JhiLanguageHelper,
-        Title,
-        {
-            provide: LOCALE_ID,
-            useValue: 'fr'
-        },
+        Title
     ],
     exports: [
         HotManSharedLibsModule,

@@ -6,6 +6,7 @@ import { PasswordService } from '../../../../../../main/webapp/app/account/passw
 import { Principal } from '../../../../../../main/webapp/app/shared/auth/principal.service';
 import { AccountService } from '../../../../../../main/webapp/app/shared/auth/account.service';
 
+
 describe('Component Tests', () => {
 
     describe('PasswordComponent', () => {

@@ -1,5 +1,6 @@
 package bj.ats.hm.service.impl;
 
+import bj.ats.hm.domain.enumeration.Etatromms;
 import bj.ats.hm.service.RoomsService;
 import bj.ats.hm.domain.Rooms;
 import bj.ats.hm.repository.RoomsRepository;
@@ -64,7 +65,7 @@ public class RoomsServiceImpl implements RoomsService{
      *  get all the rooms where Client is null.
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<Rooms> findAllWhereClientIsNull() {
         log.debug("Request to get all rooms where Client is null");
         return StreamSupport
@@ -111,5 +112,10 @@ public class RoomsServiceImpl implements RoomsService{
         return StreamSupport
             .stream(roomsSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Rooms> findAllByEtatDISPONIBLE() {
+        return roomsRepository.findAllByEtat(Etatromms.DISPONIPLE);
     }
 }

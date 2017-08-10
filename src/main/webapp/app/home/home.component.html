@@ -1,7 +1,40 @@
 <div class="row">
+    <div class="col-md-12">
+        <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let slider of sliders" >
+                <img class="img-fluid mx-auto d-block" src="../../content/images/slider2.jpg" alt="Random first slide" width="100%">
+                <div class="carousel-caption">
+                    <h3>{{slider.label}}</h3>
+                    <p>{{slider.text}}</p>
+                </div>
+            </ng-template>
+        </ngb-carousel>
+
+</div>
+</div>
+<!--<img src="../../content/images/slider2.jpg"/>-->
+<!--<img src="{{img}}"/>-->
+    <hr>
+<div class="row">
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-info'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+        <app-stat [bgClass]="'card-danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
+    </div>
+</div>
+<hr/>
+<div class="row">
     <div class="col-md-3">
         <span class="hipster img-fluid img-rounded"></span>
     </div>
+    <jhi-bilan></jhi-bilan>
     <div class="col-md-9">
         <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
         <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
@@ -23,20 +56,5 @@
             </div>
         </div>
 
-        <p jhiTranslate="home.question">
-            If you have any question on JHipster:
-        </p>
-
-        <ul>
-            <li><a href="https://jhipster.github.io/" target="_blank" rel="noopener" jhiTranslate="home.link.homepage">JHipster homepage</a></li>
-            <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener" jhiTranslate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>
-            <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener" jhiTranslate="home.link.bugtracker">JHipster bug tracker</a></li>
-            <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener" jhiTranslate="home.link.chat">JHipster public chat room</a></li>
-            <li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener" jhiTranslate="home.link.follow">follow @java_hipster on Twitter</a></li>
-        </ul>
-
-        <p>
-            <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener" jhiTranslate="home.github">GitHub</a>!
-        </p>
     </div>
 </div>

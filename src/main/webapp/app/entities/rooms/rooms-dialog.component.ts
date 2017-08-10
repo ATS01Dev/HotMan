@@ -20,6 +20,7 @@ import { ResponseWrapper } from '../../shared';
 export class RoomsDialogComponent implements OnInit {
 
     rooms: Rooms;
+    authorities: any[];
     isSaving: boolean;
 
     badges: Badge[];
@@ -38,6 +39,7 @@ export class RoomsDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.badgeService
             .query({filter: 'rooms(romsnumber)-is-null'})
             .subscribe((res: ResponseWrapper) => {
@@ -63,19 +65,24 @@ export class RoomsDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.rooms.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.roomsService.update(this.rooms));
+                this.roomsService.update(this.rooms), false);
         } else {
             this.subscribeToSaveResponse(
-                this.roomsService.create(this.rooms));
+                this.roomsService.create(this.rooms), true);
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Rooms>) {
+    private subscribeToSaveResponse(result: Observable<Rooms>, isCreated: boolean) {
         result.subscribe((res: Rooms) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Rooms) {
+    private onSaveSuccess(result: Rooms, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'hotManApp.rooms.created'
+            : 'hotManApp.rooms.updated',
+            { param : result.id }, null);
+
         this.eventManager.broadcast({ name: 'roomsListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -110,6 +117,7 @@ export class RoomsDialogComponent implements OnInit {
 })
 export class RoomsPopupComponent implements OnInit, OnDestroy {
 
+    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -120,11 +128,11 @@ export class RoomsPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.roomsPopupService
-                    .open(RoomsDialogComponent as Component, params['id']);
+                this.modalRef = this.roomsPopupService
+                    .open(RoomsDialogComponent, params['id']);
             } else {
-                this.roomsPopupService
-                    .open(RoomsDialogComponent as Component);
+                this.modalRef = this.roomsPopupService
+                    .open(RoomsDialogComponent);
             }
         });
     }

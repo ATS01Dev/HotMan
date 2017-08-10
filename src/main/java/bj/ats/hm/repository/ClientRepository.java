@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
+import java.util.List;
+
 
 /**
  * Spring Data JPA repository for the Client entity.
@@ -12,5 +14,9 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface ClientRepository extends JpaRepository<Client,Long> {
-    
+
+    List<Client> findAllByOrderByDatecomeAsc();
+    //List<Client> findAllByOrderByDatecomeDsc();
+
+    List<Client> findAllByOrderByDatecomeDesc();
 }

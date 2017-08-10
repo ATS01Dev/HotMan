@@ -7,42 +7,32 @@ import { ClientService } from './client.service';
 
 @Injectable()
 export class ClientPopupService {
-    private ngbModalRef: NgbModalRef;
-
+    private isOpen = false;
     constructor(
         private datePipe: DatePipe,
         private modalService: NgbModal,
         private router: Router,
         private clientService: ClientService
 
-    ) {
-        this.ngbModalRef = null;
-    }
+    ) {}
 
-    open(component: Component, id?: number | any): Promise<NgbModalRef> {
-        return new Promise<NgbModalRef>((resolve, reject) => {
-            const isOpen = this.ngbModalRef !== null;
-            if (isOpen) {
-                resolve(this.ngbModalRef);
-            }
+    open(component: Component, id?: number | any): NgbModalRef {
+        if (this.isOpen) {
+            return;
+        }
+        this.isOpen = true;
 
-            if (id) {
-                this.clientService.find(id).subscribe((client) => {
-                    client.datecome = this.datePipe
-                        .transform(client.datecome, 'yyyy-MM-ddThh:mm');
-                    client.datego = this.datePipe
-                        .transform(client.datego, 'yyyy-MM-ddThh:mm');
-                    this.ngbModalRef = this.clientModalRef(component, client);
-                    resolve(this.ngbModalRef);
-                });
-            } else {
-                // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
-                setTimeout(() => {
-                    this.ngbModalRef = this.clientModalRef(component, new Client());
-                    resolve(this.ngbModalRef);
-                }, 0);
-            }
-        });
+        if (id) {
+            this.clientService.find(id).subscribe((client) => {
+                client.datecome = this.datePipe
+                    .transform(client.datecome, 'yyyy-MM-ddThh:mm');
+                client.datego = this.datePipe
+                    .transform(client.datego, 'yyyy-MM-ddThh:mm');
+                this.clientModalRef(component, client);
+            });
+        } else {
+            return this.clientModalRef(component, new Client());
+        }
     }
 
     clientModalRef(component: Component, client: Client): NgbModalRef {
@@ -50,10 +40,10 @@ export class ClientPopupService {
         modalRef.componentInstance.client = client;
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
-            this.ngbModalRef = null;
+            this.isOpen = false;
         }, (reason) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
-            this.ngbModalRef = null;
+            this.isOpen = false;
         });
         return modalRef;
     }

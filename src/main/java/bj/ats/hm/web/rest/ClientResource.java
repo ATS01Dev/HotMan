@@ -99,6 +99,11 @@ public class ClientResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/clients");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
+    @GetMapping("/clients/allOrderDatecome")
+    @Timed
+    List<Client> getAllOrderbydate(){
+        return clientService.findAllByOrderByDatecome();
+    }
 
     /**
      * GET  /clients/:id : get the "id" client.
@@ -112,6 +117,13 @@ public class ClientResource {
         log.debug("REST request to get Client : {}", id);
         Client client = clientService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(client));
+    }
+    @GetMapping("/clients/count")
+    @Timed
+    public long getClientCount() {
+        log.debug("REST request to get Client Count : ");
+       // Client client = clientService.findOne(id);
+        return clientService.Count();
     }
 
     /**

@@ -14,7 +14,7 @@
         </p>
         <p>
           <a th:href="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}"
-             th:text="@{|${baseUrl}/#/reset/finish?key=${user.resetKey}|}">Login link</a>
+             th:text="|${user.login}|">login</a>
         </p>
         <p>
             <span th:text="#{email.activation.text2}">Regards, </span>

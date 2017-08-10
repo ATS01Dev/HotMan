@@ -17,6 +17,7 @@ import { DepartmentHotpersonelService } from './department-hotpersonel.service';
 export class DepartmentHotpersonelDialogComponent implements OnInit {
 
     department: DepartmentHotpersonel;
+    authorities: any[];
     isSaving: boolean;
 
     constructor(
@@ -29,6 +30,7 @@ export class DepartmentHotpersonelDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
     }
 
     clear() {
@@ -39,19 +41,24 @@ export class DepartmentHotpersonelDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.department.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.departmentService.update(this.department));
+                this.departmentService.update(this.department), false);
         } else {
             this.subscribeToSaveResponse(
-                this.departmentService.create(this.department));
+                this.departmentService.create(this.department), true);
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<DepartmentHotpersonel>) {
+    private subscribeToSaveResponse(result: Observable<DepartmentHotpersonel>, isCreated: boolean) {
         result.subscribe((res: DepartmentHotpersonel) =>
-            this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: DepartmentHotpersonel) {
+    private onSaveSuccess(result: DepartmentHotpersonel, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'hotManApp.department.created'
+            : 'hotManApp.department.updated',
+            { param : result.id }, null);
+
         this.eventManager.broadcast({ name: 'departmentListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
@@ -78,6 +85,7 @@ export class DepartmentHotpersonelDialogComponent implements OnInit {
 })
 export class DepartmentHotpersonelPopupComponent implements OnInit, OnDestroy {
 
+    modalRef: NgbModalRef;
     routeSub: any;
 
     constructor(
@@ -88,11 +96,11 @@ export class DepartmentHotpersonelPopupComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.departmentPopupService
-                    .open(DepartmentHotpersonelDialogComponent as Component, params['id']);
+                this.modalRef = this.departmentPopupService
+                    .open(DepartmentHotpersonelDialogComponent, params['id']);
             } else {
-                this.departmentPopupService
-                    .open(DepartmentHotpersonelDialogComponent as Component);
+                this.modalRef = this.departmentPopupService
+                    .open(DepartmentHotpersonelDialogComponent);
             }
         });
     }

@@ -1,17 +1,19 @@
-import {Route, RouterModule, Routes} from '@angular/router';
+import { Route } from '@angular/router';
 
 import { NavbarComponent } from './layouts';
-import {ModuleWithProviders} from '@angular/core';
+import { SidebarComponent } from "./layouts/sidebar/sidebar.component";
 
-/*export const navbarRoute: Route = {
+export const navbarRoute: Route =
+    {
     path: '',
     component: NavbarComponent,
     outlet: 'navbar'
-};*/
+    };
+export const sidebarrRoute: Route =
 
-export const routes: Routes = [
-    { path: '', redirectTo: 'pages', pathMatch: 'full' },
-    { path: '**', redirectTo: 'pages/dashboard' }
-];
-
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
+    {
+        path: '',
+        component: SidebarComponent,
+        outlet: 'sidebar'
+    }
+;

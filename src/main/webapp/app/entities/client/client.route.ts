@@ -9,6 +9,8 @@ import { ClientDetailComponent } from './client-detail.component';
 import { ClientPopupComponent } from './client-dialog.component';
 import { ClientDeletePopupComponent } from './client-delete-dialog.component';
 
+import { Principal } from '../../shared';
+
 export const clientRoute: Routes = [
     {
         path: 'client',
