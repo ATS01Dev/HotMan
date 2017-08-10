@@ -10,8 +10,8 @@ $ionicons-font-path: "~ionicons/fonts";
 put Sass variables here:
 eg $input-color: red;
 ****************************/
-
 @import '~bootstrap/scss/bootstrap';
+//@import "theme";
 @import '~font-awesome/scss/font-awesome';
 @import '~roboto-fontface/css/roboto/sass/roboto-fontface';
 @import '~ionicons/scss/ionicons';

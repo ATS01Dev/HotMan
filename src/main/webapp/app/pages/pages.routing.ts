@@ -1,8 +1,8 @@
 import { Routes, RouterModule }  from '@angular/router';
 import { Pages } from './pages.component';
-// import { } from '../../features/dashboard/dashboard.module';
 import { ModuleWithProviders } from '@angular/core';
 // noinspection TypeScriptValidateTypes
+// import {} from '../../app/features/dashboard/dashboard.module#'
 
 // export function loadChildren(path) { return System.import(path); };
 
@@ -20,7 +20,7 @@ export const routes: Routes = [
     component: Pages,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', loadChildren: '../../features/dashboard/dashboard.module#DashboardModule' },
+      { path: 'dashboard', loadChildren: 'app/features/dashboard/dashboard.module#DashboardModule' },
       { path: 'editors', loadChildren: './editors/editors.module#EditorsModule' },
       { path: 'components', loadChildren: './components/components.module#ComponentsModule' },
       { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },

@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { navbarRoute } from '../app.route';
 import { errorRoute } from './';
-import {PagesModule} from './pages/pages.module';
 
 const LAYOUT_ROUTES = [
-    navbarRoute,
+    // routing,
+    // navbarRoute,
     ...errorRoute
 ];
 
@@ -15,7 +14,7 @@ const LAYOUT_ROUTES = [
         RouterModule.forRoot(LAYOUT_ROUTES, { useHash: true })
     ],
     exports: [
-        RouterModule, PagesModule
+        RouterModule
     ]
 })
 export class LayoutRoutingModule {}

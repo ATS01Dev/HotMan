@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Routes } from '@angular/router';
 
 import { PAGES_MENU } from './pages.menu';
-import {BaMenuService} from '../../shared/services/ba-menu/ba-menu.service';
+import {BaMenuService} from '../shared/services/ba-menu/ba-menu.service';
 
 @Component({
-  selector: 'pages',
+  selector: 'jhi-pages',
   template: `
     <ba-sidebar></ba-sidebar>
     <ba-page-top></ba-page-top>
@@ -30,9 +30,9 @@ import {BaMenuService} from '../../shared/services/ba-menu/ba-menu.service';
     <ba-back-top position="200"></ba-back-top>
     `
 })
-export class Pages {
+export class Pages implements OnInit {
 
-  constructor(private _menuService: BaMenuService , ) {
+  constructor(private _menuService: BaMenuService, ) {
   }
 
   ngOnInit() {

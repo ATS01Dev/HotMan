@@ -28,11 +28,16 @@ import {
 import {TranslateModule} from '@ngx-translate/core';
 import {NgaModule} from './shared/nga.module';
 import {DashboardModule} from './features/dashboard/dashboard.module';
+import {PagesModule} from './pages/pages.module';
+import {App} from './layouts/ng2main/app.component';
+import {GlobalState} from './global.state';
+import {routing} from "./app.route";
 
 @NgModule({
     imports: [
         BrowserModule,
-        LayoutRoutingModule,
+        PagesModule,
+        // LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         HotManSharedModule,
         HotManHomeModule,
@@ -42,6 +47,7 @@ import {DashboardModule} from './features/dashboard/dashboard.module';
         DashboardModule,
         NgaModule.forRoot(),
         TranslateModule.forRoot(),
+        routing
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -50,14 +56,17 @@ import {DashboardModule} from './features/dashboard/dashboard.module';
         ErrorComponent,
         PageRibbonComponent,
         ActiveMenuDirective,
-        FooterComponent
+        FooterComponent,
+        App,
     ],
     providers: [
         ProfileService,
         customHttpProvider(),
         PaginationConfig,
-        UserRouteAccessService
+        UserRouteAccessService,
+        GlobalState
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [ App ]
+    // bootstrap: [ JhiMainComponent ] jhipster default
 })
 export class HotManAppModule {}
