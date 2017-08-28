@@ -1,10 +1,10 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import * as $ from 'jquery';
-import {GlobalState} from '../../global.state';
-import {BaImageLoaderService} from '../../shared/services/ba-image-loader/ba-image-loader.service';
-import {BaThemeSpinner} from '../../shared/services/ba-theme-spinner/ba-theme-spinner.service';
-import {BaThemeConfig} from '../../shared/theme/theme.config';
-import {BaThemePreloader} from '../../shared/services/ba-theme-preloader/ba-theme-preloader.service';
+import {GlobalState} from './global.state';
+import {BaImageLoaderService} from './shared/services/ba-image-loader/ba-image-loader.service';
+import {BaThemeSpinner} from './shared/services/ba-theme-spinner/ba-theme-spinner.service';
+import {BaThemeConfig} from './shared/theme/theme.config';
+import {BaThemePreloader} from './shared/services/ba-theme-preloader/ba-theme-preloader.service';
 
 /*
  * App Component
@@ -15,8 +15,13 @@ import {BaThemePreloader} from '../../shared/services/ba-theme-preloader/ba-them
   styleUrls: ['./app.component.scss'],
   template: `
     <main [class.menu-collapsed]="isMenuCollapsed" baThemeRun>
-      <div class="additional-bg"></div>
-      <router-outlet></router-outlet>
+     12222222222222222222222222
+        1222
+        <!--<jhi-pages></jhi-pages>-->
+        <div class="additional-bg">
+      </div>
+        <router-outlet></router-outlet>
+        <router-outlet name="popup"></router-outlet>
     </main>
   `
 })
@@ -30,9 +35,9 @@ export class App {
               private viewContainerRef: ViewContainerRef,
               private themeConfig: BaThemeConfig) {
 
-    themeConfig.config();
+   themeConfig.config();
 
-    this._loadImages();
+   this._loadImages();
 
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
       this.isMenuCollapsed = isCollapsed;
@@ -48,7 +53,7 @@ export class App {
 
   private _loadImages(): void {
     // register some loaders
-  //  BaThemePreloader.registerLoader(this._imageLoader.load('content/img/sky-bg.jpg'));
+  // BaThemePreloader.registerLoader(this._imageLoader.load('content/img/sky-bg.jpg'));
   }
 
 }

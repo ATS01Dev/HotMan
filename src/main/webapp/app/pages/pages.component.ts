@@ -16,9 +16,9 @@ import {BaMenuService} from '../shared/services/ba-menu/ba-menu.service';
       </div>
     </div>
     <footer class="al-footer clearfix">
-      <div class="al-footer-right" translate>{{'general.created_with'}} <i class="ion-heart"></i></div>
+      <div class="al-footer-right" >teste <i class="ion-heart"></i></div>
       <div class="al-footer-main clearfix">
-        <div class="al-copy">&copy; <a href="http://akveo.com" translate>{{'general.akveo'}}</a> 2016</div>
+        <div class="al-copy">&copy; <a href="http://akveo.com" > koyaja </a> 2016</div>
         <ul class="al-share clearfix">
           <li><i class="socicon socicon-facebook"></i></li>
           <li><i class="socicon socicon-twitter"></i></li>

@@ -29,30 +29,33 @@ import {TranslateModule} from '@ngx-translate/core';
 import {NgaModule} from './shared/nga.module';
 import {DashboardModule} from './features/dashboard/dashboard.module';
 import {PagesModule} from './pages/pages.module';
-import {App} from './layouts/ng2main/app.component';
+import {App} from './app.component';
 import {GlobalState} from './global.state';
-import {routing} from "./app.route";
+import {routing} from './app.route';
+import {AppState} from './app.service';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     imports: [
         BrowserModule,
-        PagesModule,
         // LayoutRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         HotManSharedModule,
-        HotManHomeModule,
+        // HotManHomeModule,
         HotManAdminModule,
         HotManAccountModule,
         HotManEntityModule,
         DashboardModule,
         NgaModule.forRoot(),
         TranslateModule.forRoot(),
-        routing
+        PagesModule,
+        RouterModule,
+       // routing
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
-        JhiMainComponent,
-        NavbarComponent,
+       // JhiMainComponent,
+       // NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
         ActiveMenuDirective,
@@ -64,9 +67,13 @@ import {routing} from "./app.route";
         customHttpProvider(),
         PaginationConfig,
         UserRouteAccessService,
-        GlobalState
+        GlobalState,
+        AppState
     ],
     bootstrap: [ App ]
     // bootstrap: [ JhiMainComponent ] jhipster default
 })
-export class HotManAppModule {}
+export class HotManAppModule {
+    constructor(public appState: AppState) {
+    }
+}
